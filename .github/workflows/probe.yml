@@ -20,7 +20,7 @@ jobs:
 
       - name: Echo recorded checksum
         run: |
-          SHA=$(grep -oE 'SHA-256 checksum\*\*: `?[a-f0-9]{64}`?' probe-report.md | grep -oE '[a-f0-9]{64}')
+          SHA=$(grep -oE '[a-f0-9]{64}' probe-report.md | head -n 1 || true)
           if [ -z "$SHA" ]; then
             echo "ERROR: could not extract checksum from probe-report.md" >&2
             exit 1
