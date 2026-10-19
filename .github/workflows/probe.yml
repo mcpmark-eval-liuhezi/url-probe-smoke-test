@@ -1,0 +1,28 @@
+name: probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check probe report file is present
+        run: |
+          if [ ! -f probe-report.md ]; then
+            echo "ERROR: probe-report.md not found" >&2
+            exit 1
+          fi
+          echo "probe-report.md is present"
+
+      - name: Echo recorded checksum
+        run: |
+          SHA=$(grep -oE 'SHA-256 checksum\*\*: `?[a-f0-9]{64}`?' probe-report.md | grep -oE '[a-f0-9]{64}')
+          if [ -z "$SHA" ]; then
+            echo "ERROR: could not extract checksum from probe-report.md" >&2
+            exit 1
+          fi
+          echo "Recorded SHA-256 checksum: $SHA"
