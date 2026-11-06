@@ -10,9 +10,18 @@ End-to-end smoke test repository: probes the reserved documentation domain `exam
 ## Latest probe
 
 - **Title returned:** Example Domain
-- **Word count:** 134
-- **SHA-256 checksum:** `766c791b…`
+- **Word count:** 25
+- **SHA-256 checksum:** `0a080719…`
 
 ## Usage
 
 Run the **probe** workflow from the Actions tab to verify the report file is present and to echo its recorded checksum.
+
+## This run
+
+- Probed URL: `https://example.com/`
+- Title returned: **Example Domain**
+- Recorded word count: **25** (whitespace tokens over the page body prose)
+- Recorded SHA-256: `0a080719be9fbb82a86a45b80dc8c2a430fbe17dc93d23758debac092864d00f`
+
+These values were computed from the page content retrieved during this run (2026-11-06): the title came from the fetched markdown, the word count from whitespace-token counting of that body text, and the checksum from SHA-256 of the normalized UTF-8 content.
